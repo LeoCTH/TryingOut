@@ -1,0 +1,14 @@
+{
+  "block.tryingout.tester": "Tester Block®",
+  "block.tryingout.tester.tooltip": "§7If you can see this block, congrats!\nBecause that means, you've successfully installed the mod!\nEnjoy!\n\n(Right click me to find out more!)",
+  "block.tryingout.tester.rclick1": "§bMy homepage and blag, with a §llot§r§b of nerdy stuff in them: ",
+  "block.tryingout.tester.rclick2": "https://leocth.github.io/",
+
+  "item.tryingout.taser": "Taser Model XR1337-LT",
+  "item.tryingout.taser.tooltip": "§7Use & hold to electrocute creatures!",
+  "item.tryingout.taser.lowpower": "§a\nLow battery!\nPlease recharge at a charging station!",
+
+  "death.attack.taser": "%1$s was tasered to death by %2$s",
+  
+  "misc.tryingout.wip": "§lWORK IN PROGRESS! §rIf you can see this message, then it probably means the system is probably not implemented yet!\nWhile you are waiting, how about exploring other stuff in the mod? :D\n"
+}

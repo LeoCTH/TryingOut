@@ -1,0 +1,14 @@
+{
+  "block.tryingout.tester": "测试方块®",
+  "block.tryingout.tester.tooltip": "§7如果你能看见我的话，恭喜！\n因为这意味着，你已经成功地安装了此模组！\n尽情瞎搞吧！\n\n（哦对了，右键有惊喜）",
+  "block.tryingout.tester.rclick1": "§b我的个人主页和博客，内含§l各类§r§b稀奇古怪的东西： ",
+  "block.tryingout.tester.rclick2": "https://leocth.github.io/",
+
+  "item.tryingout.taser": "XR1337-LT型电击枪",
+  "item.tryingout.taser.tooltip": "§7按住使用键来电击其他生物!",
+  "item.tryingout.taser.lowpower": "§a\n电量低！\n请于一个充电台充电！",
+  
+  "death.attack.taser": "%1$s 被 %2$s 电击而死",
+  
+  "misc.tryingout.wip": "§l未完成！§r如果你能看到这条消息，这样极有可能代表这个功能还没有被实现！\n乘你还在等的时候多把弄吧弄其他东西如何？:D\n"
+}
