@@ -7,17 +7,13 @@ import com.leocth.tryingout.items.TaserItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
-import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,7 +64,7 @@ public class TryingOut
             
         }
         @SubscribeEvent
-        public static void onTERegistry(final RegistryEvent.Register<TileEntityType<? extends TileEntity>> e) {
+        public static void onTERegistry(final RegistryEvent.Register<TileEntityType<?>> e) {
         	/* probing
         	for(Entry<ResourceLocation, TileEntityType<? extends TileEntity>> en : e.getRegistry().getEntries()) {
         		LOGGER.info(en.getKey() + ", " + en.getValue().toString());

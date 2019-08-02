@@ -1,9 +1,11 @@
 package com.leocth.tryingout.items;
 
+import com.leocth.tryingout.energy.EnergyPool;
 import com.leocth.tryingout.misc.TaserDamageSource;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,11 +26,16 @@ import java.util.List;
  * This is a Java file created by LeoC200 on 2019/7/31 in project TryingOut_1142
  * All sources are released publicly on GitHub under the MIT license.
  */
-public class TaserItem extends Item {
+public class TaserItem extends Item implements IChargable {
     private static final Logger LOGGER = LogManager.getLogger();
+    private final EnergyPool pool;
+    private static final float maxEnergy = 133700f;
+    private static final float currDraw = 700f;
+    
     public TaserItem() {
-        super(new Item.Properties().maxDamage(137));
+        super(new Item.Properties().maxDamage((int) maxEnergy));
         this.setRegistryName("tryingout:taser");
+        this.pool = new EnergyPool(maxEnergy);
     }
 
     /**
@@ -53,6 +60,7 @@ public class TaserItem extends Item {
      *  Custom GUIs
      *  TEISR (idk, battery display?)
      *  BETTER 3D MODEL!!!
+     *  energy pools
      */
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
@@ -62,7 +70,7 @@ public class TaserItem extends Item {
 
         if (!worldIn.isRemote) {
             ItemStack itemstack = playerIn.getHeldItem(handIn);
-            if (itemstack.getDamage() < itemstack.getMaxDamage() - 1) {
+            if (itemstack.getDamage() < maxEnergy - currDraw && pool.amount > 0) {
 
                 double dis = playerIn.getAttribute(PlayerEntity.REACH_DISTANCE).getValue() - 0.5;
 
@@ -78,11 +86,11 @@ public class TaserItem extends Item {
                 LOGGER.info(aabb);
                 */
 
-                List<Entity> entities = worldIn.getEntitiesWithinAABB((EntityType<?>) null, aabb, Entity::isLiving);
+                List<Entity> entities = worldIn.getEntitiesWithinAABB((EntityType<?>) null, aabb, entity -> entity instanceof LivingEntity);
                 entities.removeIf(entity -> entity == playerIn); // DONT KILL THE USER!!!
 
-                double minDamage = 7.0;
-                double maxDamage = 25.0;
+                double minDamage = 6.0;
+                double maxDamage = 19.0;
                 int amount = entities.size();
                 int maxEntities = worldIn.getGameRules().get("maxEntityCramming").getInt();
                 double density = (amount > maxEntities) ? 1.0 : ((float) amount / (float) maxEntities);
@@ -100,12 +108,16 @@ public class TaserItem extends Item {
                     e.attackEntityFrom(new TaserDamageSource(playerIn), (float) actualDamage);
                 }
 
-                itemstack.damageItem((amount > 0 ? amount : 1), playerIn, player -> {
+                //LOGGER.info("prev | item damage: {} | pool amount: {}", itemstack.getDamage(), pool.amount);
+                
+                float draw = (amount > 0 ? amount : 1) * (int)currDraw;
+                itemstack.damageItem((int) draw, playerIn, player -> {
                     // TODO GUI alerts?
                     player.sendBreakAnimation(player.getActiveHand());
                 });
-
-                //LOGGER.info(itemstack.getDamage());
+                pool.set(itemstack.getMaxDamage() - itemstack.getDamage());
+                
+                //LOGGER.info("post | item damage: {} | pool amount: {}", itemstack.getDamage(), pool.amount);
                 return ActionResult.newResult(ActionResultType.SUCCESS, itemstack);
             }
         }
@@ -120,4 +132,10 @@ public class TaserItem extends Item {
             tooltip.add(new TranslationTextComponent("item.tryingout.taser.lowpower"));
         }
     }
+    
+    @Override
+    public EnergyPool getPool() {
+    	return pool;
+    }
+
 }
