@@ -1,5 +1,10 @@
 package com.leocth.tryingout.blocks;
 
+/**
+ * This is a Java file created by LeoC200 on 2019/7/30 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+
 import net.minecraft.block.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,10 +27,6 @@ import com.leocth.tryingout.misc.FontUtils;
 
 import java.util.List;
 
-/**
- * This is a Java file created by LeoC200 on 2019/7/30 in project TryingOut_1142
- * All sources are released publicly on GitHub under the MIT license.
- */
 public class TesterBlock extends DirectionalBlock {
     public TesterBlock() {
         super(Block.Properties.from(Blocks.STONE));

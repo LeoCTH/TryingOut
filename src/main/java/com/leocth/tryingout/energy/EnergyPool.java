@@ -1,13 +1,16 @@
 package com.leocth.tryingout.energy;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+/**
+ * This is a Java file created by LeoC200 on 2019/8/2 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+
+import com.leocth.tryingout.List;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class EnergyPool implements INBTSerializable<CompoundNBT> {
-	private static final Logger LOGGER = LogManager.getLogger();
 	public float capacity;
 	public float amount;
 	private boolean isInfinite = false;
@@ -32,7 +35,7 @@ public class EnergyPool implements INBTSerializable<CompoundNBT> {
 	}
 	public boolean rawAdd(float amount) {
 		if (this.isInfinite) {
-			LOGGER.warn("ж▓(бузебу; You're attempting to charge a infinitely full energy pool!! Contact the author if you see this message!!!");
+			List.LOGGER.warn("ж▓(бузебу; You're attempting to charge a infinitely full energy pool!! Contact the author if you see this message!!!");
 			return true;
 		} else {
 			if (this.amount >= this.capacity) {

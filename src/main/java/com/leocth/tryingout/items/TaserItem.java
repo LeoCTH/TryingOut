@@ -16,8 +16,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -27,7 +25,6 @@ import java.util.List;
  * All sources are released publicly on GitHub under the MIT license.
  */
 public class TaserItem extends Item implements IChargable {
-    private static final Logger LOGGER = LogManager.getLogger();
     private final EnergyPool pool;
     private static final float maxEnergy = 133700f;
     private static final float currDraw = 700f;
@@ -60,7 +57,7 @@ public class TaserItem extends Item implements IChargable {
      *  Custom GUIs
      *  TEISR (idk, battery display?)
      *  BETTER 3D MODEL!!!
-     *  energy pools
+     *  [FINISHED] energy pools
      */
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
@@ -80,10 +77,10 @@ public class TaserItem extends Item implements IChargable {
                 AxisAlignedBB aabb = new AxisAlignedBB(start, end).offset(-1.0, -1.0, -1.0).expand(2, 2, 2);
 
                 /*
-                LOGGER.info(look);
-                LOGGER.info(start);
-                LOGGER.info(end);
-                LOGGER.info(aabb);
+                List.LOGGER.info(look);
+                List.LOGGER.info(start);
+                List.LOGGER.info(end);
+                List.LOGGER.info(aabb);
                 */
 
                 List<Entity> entities = worldIn.getEntitiesWithinAABB((EntityType<?>) null, aabb, entity -> entity instanceof LivingEntity);
@@ -98,17 +95,17 @@ public class TaserItem extends Item implements IChargable {
                 double actualDamage = MathHelper.floor(MathHelper.lerp(density, maxDamage, minDamage));
 
                 /*
-                LOGGER.info(amount);
-                LOGGER.info(maxEntities);
-                LOGGER.info(density);
-                LOGGER.info(actualDamage);
+                List.LOGGER.info(amount);
+                List.LOGGER.info(maxEntities);
+                List.LOGGER.info(density);
+                List.LOGGER.info(actualDamage);
                 */
 
                 for (Entity e : entities) {
                     e.attackEntityFrom(new TaserDamageSource(playerIn), (float) actualDamage);
                 }
 
-                //LOGGER.info("prev | item damage: {} | pool amount: {}", itemstack.getDamage(), pool.amount);
+                //List.LOGGER.info("prev | item damage: {} | pool amount: {}", itemstack.getDamage(), pool.amount);
                 
                 float draw = (amount > 0 ? amount : 1) * (int)currDraw;
                 itemstack.damageItem((int) draw, playerIn, player -> {
@@ -117,7 +114,7 @@ public class TaserItem extends Item implements IChargable {
                 });
                 pool.set(itemstack.getMaxDamage() - itemstack.getDamage());
                 
-                //LOGGER.info("post | item damage: {} | pool amount: {}", itemstack.getDamage(), pool.amount);
+                //List.LOGGER.info("post | item damage: {} | pool amount: {}", itemstack.getDamage(), pool.amount);
                 return ActionResult.newResult(ActionResultType.SUCCESS, itemstack);
             }
         }

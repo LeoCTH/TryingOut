@@ -1,5 +1,10 @@
 package com.leocth.tryingout;
 
+/**
+ * This is a Java file created by LeoC200 on 2019/7/30 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+
 import com.leocth.tryingout.blocks.TesterBlock;
 import com.leocth.tryingout.blocks.energy.ChargingStationBlock;
 import com.leocth.tryingout.blocks.energy.ChargingStationTE;
@@ -18,35 +23,21 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-/**
- * This is a Java file created by LeoC200 on 2019/7/30 in project TryingOut_1142
- * All sources are released publicly on GitHub under the MIT license.
- */
 @Mod(TryingOut.MODID)
 public class TryingOut
 {
-    // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
-    
     public static final String MODID = "tryingout";
 
     public TryingOut() {
-        // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        // remember, this is called AFTER the registering events!!
+    	List.LOGGER.info("TryingOut::setup called: finished registering.");
     }
 
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
     	

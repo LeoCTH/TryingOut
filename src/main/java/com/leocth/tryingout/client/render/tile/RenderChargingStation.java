@@ -1,11 +1,12 @@
 package com.leocth.tryingout.client.render.tile;
 
+/**
+ * This is a Java file created by LeoC200 on 2019/8/3 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+
 import javax.annotation.Nonnull;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.leocth.tryingout.List;
 import com.leocth.tryingout.blocks.energy.ChargingStationTE;
 import com.leocth.tryingout.client.TickTracker;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -20,25 +21,25 @@ import net.minecraft.item.ItemStack;
 @SuppressWarnings("deprecation")
 public class RenderChargingStation extends TileEntityRenderer<ChargingStationTE> {
 	
-	private static Logger LOGGER = LogManager.getLogger();
 	@Override
 	public void render(@Nonnull ChargingStationTE te, double x, double y, double z, float partticks, int digProgress) {
 		GlStateManager.pushMatrix();
 		GlStateManager.color4f(1F, 1F, 1F, 1F);
 		GlStateManager.translated(x, y, z);
-		//LOGGER.info("x, y, z: {} {} {}", x, y, z);
+		//List.LOGGER.info("x, y, z: {} {} {}", x, y, z);
 		
+		@SuppressWarnings("unused")
 		int items = 0;
 		for (int i = 0; i < te.getItems().getSlots(); i++) {
-			//LOGGER.info("item id: {}", te.getItems().getStackInSlot(i).getItem().getRegistryName());
+			//List.LOGGER.info("item id: {}", te.getItems().getStackInSlot(i).getItem().getRegistryName());
 			if (te.items.getStackInSlot(i).isEmpty()) {
 				break;
 			} else {
 				items++;
 			}
 		}
-		//LOGGER.info("te.items.size = {}, items = {}, avg angle: {}", te.getItems().getSlots(), items, 360f / items);
-		//LOGGER.info("Expected items = {}", te.getItems().getStackInSlot(0));
+		//List.LOGGER.info("te.items.size = {}, items = {}, avg angle: {}", te.getItems().getSlots(), items, 360f / items);
+		//List.LOGGER.info("Expected items = {}", te.getItems().getStackInSlot(0));
 		
 		double time = TickTracker.ticksInGame + partticks;
 		
@@ -53,11 +54,11 @@ public class RenderChargingStation extends TileEntityRenderer<ChargingStationTE>
 		GlStateManager.rotatef(90F, 0F, 0F, 0F);
 		GlStateManager.translated(0D, 0.075 * Math.sin((time + i * 10) / 5D), 0F);
 		*/
-		//ItemStack stack = te.getItems().getStackInSlot(0);
-		ItemStack stack = new ItemStack(List.TESTER);
+		
+		ItemStack stack = te.getItems().getStackInSlot(0);
 		Minecraft mc = Minecraft.getInstance();
 		if(!stack.isEmpty()) {
-			//LOGGER.info("attempting to render {}", stack.getItem().getRegistryName());
+			//List.LOGGER.info("attempting to render {}", stack.getItem().getRegistryName());
 			mc.getItemRenderer().renderItem(stack, ItemCameraTransforms.TransformType.GROUND);
 		}
 		GlStateManager.popMatrix();

@@ -1,5 +1,10 @@
 package com.leocth.tryingout.client;
 
+/**
+ * This is a Java file created by LeoC200 on 2019/7/30 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+
 import com.leocth.tryingout.TryingOut;
 
 import net.minecraft.client.Minecraft;

@@ -1,5 +1,10 @@
 package com.leocth.tryingout.blocks.energy;
 
+/**
+ * This is a Java file created by LeoC200 on 2019/8/1 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -22,10 +27,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-/**
- * This is a Java file created by LeoC200 on 2019/8/1 in project TryingOut_1142
- * All sources are released publicly on GitHub under the MIT license.
- */
 public class ChargingStationBlock extends Block {
 	
 	public ChargingStationBlock() {
@@ -49,6 +50,7 @@ public class ChargingStationBlock extends Block {
 	    return new ChargingStationTE();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isRemote) {
@@ -56,14 +58,14 @@ public class ChargingStationBlock extends Block {
 			if (te instanceof ChargingStationTE) {
 				ItemStack stack = player.getHeldItem(handIn);
 				if (!stack.isEmpty()) {
-					if (((ChargingStationTE) te).feedItem(stack)) {
+					if (((ChargingStationTE) te).feedItem(stack, player)) {
 						player.setHeldItem(handIn, ItemStack.EMPTY);
 						return true;
 					} else {
 						return false;
 					}
 				} else {
-					player.setHeldItem(handIn, ((ChargingStationTE) te).retrieveItem());
+					player.setHeldItem(handIn, ((ChargingStationTE) te).retrieveItem(player));
 					return true;
 				}
 			}

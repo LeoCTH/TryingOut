@@ -1,5 +1,10 @@
 package com.leocth.tryingout.misc;
 
+/**
+ * This is a Java file created by LeoC200 on 2019/8/3 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+
 import javax.annotation.Nullable;
 
 import net.minecraft.util.text.ITextComponent;

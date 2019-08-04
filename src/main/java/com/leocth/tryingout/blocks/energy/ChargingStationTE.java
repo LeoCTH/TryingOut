@@ -1,25 +1,26 @@
 package com.leocth.tryingout.blocks.energy;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.leocth.tryingout.List;
 import com.leocth.tryingout.energy.EnergyPool;
 import com.leocth.tryingout.items.IChargable;
 
-import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+/**
+ * This is a Java file created by LeoC200 on 2019/8/1 in project TryingOut_1142
+ * All sources are released publicly on GitHub under the MIT license.
+ */
+// TODO: Clean up all messy base codes
 public class ChargingStationTE extends TileEntity implements ITickableTileEntity {
-	private static final Logger LOGGER = LogManager.getLogger();
 	private final EnergyPool pool;
 	private final float current = 750.0f;
 	private float amount;
@@ -39,19 +40,25 @@ public class ChargingStationTE extends TileEntity implements ITickableTileEntity
 	
 	// replace with direct manipulation on items.insertItem/extractItem
 	@Deprecated
-	public boolean feedItem(ItemStack stack) {
+	public boolean feedItem(ItemStack stack, PlayerEntity player) {
 		if (items.getStackInSlot(0).isEmpty() && (stack.getItem() instanceof IChargable)) {
 			items.setStackInSlot(0, stack);
+			//PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> this.world.getChunkAt(this.getPos())), new PacketSyncItem(stack));
+			if (player instanceof ServerPlayerEntity)
+				((ServerPlayerEntity) player).connection.sendPacket(new SUpdateTileEntityPacket(this.pos, -999, this.serializeNBT()));
 			return true;
 		}
 		return false;
 	}
 	
 	@Deprecated
-	public ItemStack retrieveItem() {
+	public ItemStack retrieveItem(PlayerEntity player) {
 		if (!items.getStackInSlot(0).isEmpty()) {
 			ItemStack stack = items.getStackInSlot(0);
 			items.setStackInSlot(0, ItemStack.EMPTY);
+			//PacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> this.world.getChunkAt(this.getPos())), new PacketSyncItem(ItemStack.EMPTY));
+			if (player instanceof ServerPlayerEntity)
+				((ServerPlayerEntity) player).connection.sendPacket(new SUpdateTileEntityPacket(this.pos, -999, this.serializeNBT()));
 			return stack;
 		}
 		return ItemStack.EMPTY;
@@ -63,14 +70,14 @@ public class ChargingStationTE extends TileEntity implements ITickableTileEntity
 		ItemStack itemToBeCharged = items.getStackInSlot(0);
 		if (!this.world.isRemote) {
 			if (!itemToBeCharged.isEmpty() && (itemToBeCharged.getItem() instanceof IChargable)) {
-				//LOGGER.info("prev | item damage: {} | pool amount: {}", itemToBeCharged.getDamage(), pool.amount);
+				//List.LOGGER.info("prev | item damage: {} | pool amount: {}", itemToBeCharged.getDamage(), pool.amount);
 				if (itemToBeCharged.getDamage() - current > 0) {
 					itemToBeCharged.setDamage((int) (itemToBeCharged.getDamage() - current));
 				} else {
 					itemToBeCharged.setDamage(0);
 				}
 				this.pool.transfer(((IChargable) itemToBeCharged.getItem()).getPool(), current);
-				//LOGGER.info("post | item damage: {} | pool amount: {}", itemToBeCharged.getDamage(), pool.amount);
+				//List.LOGGER.info("post | item damage: {} | pool amount: {}", itemToBeCharged.getDamage(), pool.amount);
 				this.markDirty();
 			}
 		}
@@ -86,7 +93,7 @@ public class ChargingStationTE extends TileEntity implements ITickableTileEntity
 		this.amount = compound.getFloat("amount");
 	    this.items = new ItemStackHandler(1);
 	    this.items.deserializeNBT(compound);
-	    LOGGER.info("read nbt: {}",compound);
+	    //List.LOGGER.info("read nbt: {}",compound);
 	    pool.deserializeNBT((CompoundNBT) compound.get("pool"));
 	}
 
@@ -95,12 +102,12 @@ public class ChargingStationTE extends TileEntity implements ITickableTileEntity
 	    compound.putFloat("amount", this.amount);
 	    compound.merge(items.serializeNBT());
 	    compound.put("pool", pool.serializeNBT());
-	    LOGGER.info("write nbt: {}",compound);
+	    //List.LOGGER.info("write nbt: {}",compound);
 	    return compound;
 	}
 	
 	public void readPacketNBT(CompoundNBT compound) {
-		LOGGER.info(compound);
+		//List.LOGGER.info(compound);
 		items = new ItemStackHandler(1);
 		items.deserializeNBT(compound);
 		this.amount = compound.getFloat("amount");
@@ -108,7 +115,7 @@ public class ChargingStationTE extends TileEntity implements ITickableTileEntity
 	}
 
 	public void writePacketNBT(CompoundNBT compound) {
-		LOGGER.info(compound);
+		//List.LOGGER.info(compound);
 		compound.merge(items.serializeNBT());
 		compound.putFloat("amount", this.amount);
 		compound.put("pool", pool.serializeNBT());
