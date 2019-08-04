@@ -1,0 +1,199 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "cauldron_side": "minecraft:block/cauldron_side",
+        "charging_station_top": "tryingout:block/charging_station_top",
+        "cauldron_inner": "minecraft:block/cauldron_inner",
+        "diorite": "minecraft:block/diorite"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 45, 0, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "baseplate",
+            "from": [ 3.5, 0.8, 3.5 ], 
+            "to": [ 12.5, 3.1, 12.5 ], 
+            "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": -45.0 },
+            "faces": {
+                "north": { "texture": "#diorite", "uv": [ 0, 0, 9, 2 ] },
+                "east": { "texture": "#diorite", "uv": [ 0, 0, 9, 2 ] },
+                "south": { "texture": "#diorite", "uv": [ 0, 0, 9, 2 ] },
+                "west": { "texture": "#diorite", "uv": [ 0, 0, 9, 2 ] },
+                "up": { "texture": "#diorite", "uv": [ 3, 4, 12, 13 ] },
+                "down": { "texture": "#diorite", "uv": [ 3, 4, 12, 13 ] }
+            }
+        },
+        {
+            "name": "charging_pad_base",
+            "from": [ 4.5, 3.1, 4.5 ], 
+            "to": [ 11.5, 4.1, 11.5 ], 
+            "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": -45.0 },
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 0, 0, 7, 1 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 0, 0, 7, 1 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 0, 5, 7, 6 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 0, 0, 7, 1 ] },
+                "up": { "texture": "#cauldron_side", "uv": [ 5, 5, 12, 12 ] },
+                "down": { "texture": "#cauldron_side", "uv": [ 5, 5, 12, 12 ] }
+            }
+        },
+        {
+            "name": "connector_north",
+            "from": [ 6, 0, 0 ], 
+            "to": [ 10, 4, 1 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_inner", "uv": [ 7, 7, 11, 11 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 0, 0, 4, 4 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "up": { "texture": "#cauldron_side", "uv": [ 0, 0, 4, 1 ] },
+                "down": { "texture": "#cauldron_side", "uv": [ 0, 0, 4, 1 ] }
+            }
+        },
+        {
+            "name": "connector_east",
+            "from": [ 15, 0, 6 ], 
+            "to": [ 16, 4, 10 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "east": { "texture": "#cauldron_inner", "uv": [ 7, 7, 11, 11 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 0, 0, 4, 4 ] },
+                "up": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "down": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] }
+            }
+        },
+        {
+            "name": "connector_west",
+            "from": [ 0, 0, 6 ], 
+            "to": [ 1, 4, 10 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 0, 0, 3, 3 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "west": { "texture": "#cauldron_inner", "uv": [ 7, 7, 11, 11 ] },
+                "up": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "down": { "texture": "#cauldron_side", "uv": [ 0, 0, 2, 2 ] }
+            }
+        },
+        {
+            "name": "connector_south",
+            "from": [ 6, 0, 15 ], 
+            "to": [ 10, 4, 16 ], 
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 0, 0, 4, 4 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 0, 0, 3, 2 ] },
+                "south": { "texture": "#cauldron_inner", "uv": [ 7, 7, 11, 11 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 0, 0, 1, 4 ] },
+                "up": { "texture": "#cauldron_side", "uv": [ 0, 0, 4, 1 ] },
+                "down": { "texture": "#cauldron_side", "uv": [ 0, 0, 4, 1 ] }
+            }
+        },
+        {
+            "name": "charging_pad_top",
+            "from": [ 4.5, 6.1, 4.5 ], 
+            "to": [ 11.5, 7.1, 11.5 ], 
+            "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": -45.0 },
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 0, 0, 7, 1 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 0, 0, 7, 1 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 0, 0, 7, 1 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 0, 0, 7, 1 ] },
+                "up": { "texture": "#charging_station_top", "uv": [ -1, -1, 17, 17 ] },
+                "down": { "texture": "#cauldron_side", "uv": [ 5, 5, 12, 12 ] }
+            }
+        },
+        {
+            "name": "charging_pad_middle",
+            "from": [ 5, 4.1, 5 ], 
+            "to": [ 11, 6.1, 11 ], 
+            "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": -45.0 },
+            "faces": {
+                "north": { "texture": "#cauldron_side", "uv": [ 0, 0, 6, 2 ] },
+                "east": { "texture": "#cauldron_side", "uv": [ 0, 0, 6, 2 ] },
+                "south": { "texture": "#cauldron_side", "uv": [ 0, 0, 6, 2 ] },
+                "west": { "texture": "#cauldron_side", "uv": [ 0, 0, 6, 2 ] },
+                "up": { "texture": "#cauldron_side", "uv": [ 5, 5, 11, 11 ] },
+                "down": { "texture": "#cauldron_side", "uv": [ 5, 5, 11, 11 ] }
+            }
+        },
+        {
+            "name": "charging_bridge_west",
+            "from": [ 1, 0.75, 6.75 ], 
+            "to": [ 2, 3.25, 9.25 ], 
+            "faces": {
+                "north": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.4 ] },
+                "east": { "texture": "#diorite", "uv": [ 0, 0, 0.8, 0.4 ] },
+                "south": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.4 ] },
+                "up": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.8 ] },
+                "down": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.8 ] }
+            }
+        },
+        {
+            "name": "charging_bridge_south",
+            "from": [ 6.75, 0.75, 14 ], 
+            "to": [ 9.25, 3.25, 15 ], 
+            "faces": {
+                "north": { "texture": "#diorite", "uv": [ 0, 0, 0.8, 0.4 ] },
+                "east": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.4 ] },
+                "west": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.4 ] },
+                "up": { "texture": "#diorite", "uv": [ 0, 0, 0.8, 1 ] },
+                "down": { "texture": "#diorite", "uv": [ 0, 0, 0.8, 1 ] }
+            }
+        },
+        {
+            "name": "charging_bridge_north",
+            "from": [ 6.75, 0.75, 1 ], 
+            "to": [ 9.25, 3.25, 2 ], 
+            "faces": {
+                "east": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.4 ] },
+                "south": { "texture": "#diorite", "uv": [ 0, 0, 0.8, 0.4 ] },
+                "west": { "texture": "#diorite", "uv": [ 1, 0, 2, 0.4 ] },
+                "up": { "texture": "#diorite", "uv": [ 0, 0, 0.8, 1 ] },
+                "down": { "texture": "#diorite", "uv": [ 0, 0, 0.8, 1 ] }
+            }
+        },
+        {
+            "name": "charging_bridge_east",
+            "from": [ 14, 0.75, 6.75 ], 
+            "to": [ 15, 3.25, 9.25 ], 
+            "faces": {
+                "north": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.4 ] },
+                "south": { "texture": "#diorite", "uv": [ 0, 0, 3, 0.5 ] },
+                "west": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.5 ] },
+                "up": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.8 ] },
+                "down": { "texture": "#diorite", "uv": [ 0, 0, 1, 0.8 ] }
+            }
+        }
+    ]
+}

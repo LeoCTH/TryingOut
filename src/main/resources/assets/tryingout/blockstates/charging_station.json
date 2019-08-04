@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "tryingout:block/charging_station" }
+  }
+}

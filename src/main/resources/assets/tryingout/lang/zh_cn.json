@@ -3,6 +3,8 @@
   "block.tryingout.tester.tooltip": "§7如果你能看见我的话，恭喜！\n因为这意味着，你已经成功地安装了此模组！\n尽情瞎搞吧！\n\n（哦对了，右键有惊喜）",
   "block.tryingout.tester.rclick1": "§b我的个人主页和博客，内含§l各类§r§b稀奇古怪的东西： ",
   "block.tryingout.tester.rclick2": "https://leocth.github.io/",
+  "block.tryingout.charging_station": "充电站",
+  "block.tryingout.charging_station.tooltip": "§7在这里给你心爱的电子设备充电！ 既然这只是个小展示，充电站的能量其实是无限的，所以不用担心电量耗光尽管用吧！",
 
   "item.tryingout.taser": "XR1337-LT型电击枪",
   "item.tryingout.taser.tooltip": "§7按住使用键来电击其他生物!",

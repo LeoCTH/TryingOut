@@ -3,14 +3,17 @@ package com.leocth.tryingout;
 import com.leocth.tryingout.blocks.TesterBlock;
 import com.leocth.tryingout.blocks.energy.ChargingStationBlock;
 import com.leocth.tryingout.blocks.energy.ChargingStationTE;
+import com.leocth.tryingout.client.render.tile.RenderChargingStation;
 import com.leocth.tryingout.items.TaserItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -22,11 +25,13 @@ import org.apache.logging.log4j.Logger;
  * This is a Java file created by LeoC200 on 2019/7/30 in project TryingOut_1142
  * All sources are released publicly on GitHub under the MIT license.
  */
-@Mod("tryingout")
+@Mod(TryingOut.MODID)
 public class TryingOut
 {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
+    
+    public static final String MODID = "tryingout";
 
     public TryingOut() {
         // Register the setup method for modloading
@@ -71,6 +76,10 @@ public class TryingOut
         	}
         	*/
         	e.getRegistry().register(TileEntityType.Builder.<ChargingStationTE>create(ChargingStationTE::new, List.CHARGING_STATION).build(null).setRegistryName("tryingout:charging_station"));
+        }
+        @SubscribeEvent
+        public static void onModelRegistry(final ModelRegistryEvent e) {
+        	ClientRegistry.bindTileEntitySpecialRenderer(ChargingStationTE.class, new RenderChargingStation());
         }
     }
 }

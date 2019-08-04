@@ -3,6 +3,8 @@
   "block.tryingout.tester.tooltip": "§7If you can see this block, congrats!\nBecause that means, you've successfully installed the mod!\nEnjoy!\n\n(Right click me to find out more!)",
   "block.tryingout.tester.rclick1": "§bMy homepage and blag, with a §llot§r§b of nerdy stuff in them: ",
   "block.tryingout.tester.rclick2": "https://leocth.github.io/",
+  "block.tryingout.charging_station": "Charging Station",
+  "block.tryingout.charging_station.tooltip": "§7Charge your beloved electronics here! Since this is just a demo, the station actually holds infinite electricity out of nowhere, so just safely use it without fear of out of power!",
 
   "item.tryingout.taser": "Taser Model XR1337-LT",
   "item.tryingout.taser.tooltip": "§7Use & hold to electrocute creatures!",
